@@ -22,9 +22,13 @@ class FormularioController extends Controller {
                             ->get();
 
         // Para mostrar el formulario
-        $visualizar = $registros->some(function($item, $key){
-            return $item->total < 8;
-        });
+        $visualizar = true;
+
+        if($registros->count() > 0){
+            $visualizar = $registros->some(function($item, $key){
+                return $item->total < 8;
+            });
+        }
 
         // Verificar disponibilidad de cada día
         $evaluarDia = $registros->map(function($item, $key){
