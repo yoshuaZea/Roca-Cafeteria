@@ -14,7 +14,7 @@
             <span class="text-gray-500 text-sm" id="fechaHoy"></span>
         </div>
 
-        @if($visualizar))
+        @if($visualizar)
             <div class="col-span-1 md:col-span-2">
                 <p class="text-sm md:text-base text-gray-600">
                     Estimados usuarios, el siguiente formulario tiene <span class="underline underline-offset-1">cierto</span> cupo por lo que es necesario enviarlo el día viernes como fecha <span class="underline underline-offset-1">límite</span>.
