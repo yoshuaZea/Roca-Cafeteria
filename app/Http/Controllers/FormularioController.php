@@ -52,6 +52,11 @@ class FormularioController extends Controller {
      */
     public function store(Request $request){
 
+        // No hacer nada si no está disponible
+        if(!self::checkAvailability()){
+            abort(404);
+        }
+
         // Validations
         $request->validate([
             'familia' => 'required|string|min:5',
@@ -72,5 +77,9 @@ class FormularioController extends Controller {
         session()->flash('message', '¡Tu registro fue almacenado exitosamente!');
 
         return redirect()->route('formulario.index');
+    }
+
+    public static function checkAvailability(){
+        return date('w') <= 4 && date('H:i') <= '18:00';
     }
 }
