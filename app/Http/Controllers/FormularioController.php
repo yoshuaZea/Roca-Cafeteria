@@ -80,6 +80,12 @@ class FormularioController extends Controller {
     }
 
     public static function checkAvailability(){
-        return date('w') <= 4 && date('H:i') <= '18:00';
+        if(date('w') < 4){
+            return true;
+        } else if(date('w') == 4 && date('H:i') <= '18:00' ) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
