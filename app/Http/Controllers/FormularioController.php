@@ -24,7 +24,7 @@ class FormularioController extends Controller {
         // Para mostrar el formulario
         $visualizar = true;
 
-        if($registros->count() > 0){
+        if($registros->count() > 1){
             $visualizar = $registros->some(function($item, $key){
                 return $item->total < 8;
             });
