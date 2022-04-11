@@ -11,6 +11,7 @@ class Formulario extends Model {
     protected $fillable = [
         'familia',
         'personas',
-        'dia'
+        'dia',
+        'telefono'
     ];
 }

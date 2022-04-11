@@ -61,15 +61,30 @@ class FormularioController extends Controller {
         $request->validate([
             'familia' => 'required|string|min:5',
             'personas' => 'required|integer|min:1|max:100',
-            'dia' => 'required|string|in:sábado,domingo'
+            'dia' => 'required|string|in:sábado,domingo',
+            'telefono' => 'required|digits:10'
         ]);
+
+        // Verify if no exists the same data
+        $exist = Formulario::where('familia', $request->familia)
+                            ->where('personas', $request->personas)
+                            ->where('dia', $request->dia)
+                            ->where('telefono', $request->telefono)
+                            ->first();
+
+        if($exist){
+            // Create a flash message
+            session()->flash('type', 'warning');
+            session()->flash('message', '¡Te comentamos que tu información ya está registrada!');
+            return back();
+        }
 
         // Store a record
         Formulario::create([
-            'familia' => Str::title($request->familia),
+            'familia' => Str::title(trim($request->familia)),
             'personas' => $request->personas,
-            'dia' => Str::ucFirst($request->dia)
-
+            'dia' => Str::ucFirst($request->dia),
+            'telefono' => $request->telefono
         ]);
 
         // Create a flash message

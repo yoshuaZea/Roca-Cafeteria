@@ -94,7 +94,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
                             <div class="col-span-1 md:col-span-2">
                                 <label
-                                class="block text-gray-600 text-sm mb-2 font-semibold @error('personas') text-orange-500 @enderror"
+                                class="block text-gray-600 text-sm mb-2 font-semibold @error('familia') text-orange-500 @enderror"
                                     for="familia"
                                 >Nombre de la familia</label>
                                 <input
@@ -183,7 +183,25 @@
                                     <div id="msg-error" class="block text-orange-500 text-xs mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
-                            <div class="col-span-1 md:col-span-2 flex flex-col md:flex-row md:justify-end">
+                            <div class="">
+                                <label
+                                class="block text-gray-600 text-sm mb-2 font-semibold @error('telefono') text-orange-500 @enderror"
+                                    for="telefono"
+                                >Número de teléfono</label>
+                                <input
+                                    type="text"
+                                    class="flex-1 appearance-none w-full py-2 px-4 bg-white text-gray-600 placeholder-gray-400 shadow-md rounded-r-md text-sm focus:outline-none focus:border-2 focus:border-orange-500 rscc required @error('telefono') border-l-4 border-orange-500  @enderror"
+                                    id="telefono"
+                                    name="telefono"
+                                    placeholder="Ejemplo. 777 123 4567 "
+                                    maxlength="10"
+                                    value="{{ old('telefono') }}"
+                                />
+                                @error('telefono')
+                                    <div id="msg-error" class="block text-orange-500 text-xs mt-2">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="flex flex-col md:flex-row md:justify-end">
                                 <button
                                     type="submit"
                                     class="shadow bg-orange-500 hover:opacity-90 text-white px-4 py-2 focus:outline-none focus:shadow-none rounded text-center text-sm uppercase self-stretch md:self-end"

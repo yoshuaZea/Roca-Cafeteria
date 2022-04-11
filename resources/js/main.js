@@ -1,7 +1,7 @@
 import Swal from 'sweetalert2'
 import { format } from 'date-fns'
 import mexicoLocale from 'date-fns/locale/es'
-import { listenersInputs, validateForm } from './helpers'
+import { listenersInputs, validateForm, runReplacers } from './helpers'
 
 
 const alerta = document.querySelector('#alerta')
@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if(form){
         listenersInputs('#formulario-menu')
+        runReplacers()
 
         form.addEventListener('submit', e => {
             const array = [...form.elements]
@@ -77,7 +78,9 @@ const showNotification = () => {
         Swal.fire({
             icon: 'warning',
             text: message,
-            showConfirmButton: true
+            showConfirmButton: true,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#f8bb86'
         })
     } else if(type == 'error'){
         Swal.fire({
